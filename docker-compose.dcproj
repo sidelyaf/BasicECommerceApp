@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectVersion>2.1</ProjectVersion>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <DockerPublishLocally>False</DockerPublishLocally>
+    <ProjectGuid>f129aa21-2137-4201-8aa0-11a5ccc82369</ProjectGuid>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
+    <DockerServiceName>basicecommerce.webapi</DockerServiceName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="docker-compose.override.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </None>
+    <None Include="docker-compose.yml" />
+    <None Include=".dockerignore" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+services:
+  basicecommerce.webapi:
+    image: ${DOCKER_REGISTRY-}basicecommercewebapi
+    build:
+      context: .
+      dockerfile: API/BasicEcommerce.WebAPI/Dockerfile

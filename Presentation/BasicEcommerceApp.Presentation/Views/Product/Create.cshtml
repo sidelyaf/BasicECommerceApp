@@ -1,0 +1,19 @@
+﻿@model BasicEcommerce.Domain.Entities.Product
+
+<h2>Add New Product</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" asp-for="Name" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="number" class="form-control" asp-for="Price" />
+    </div>
+    <div class="form-group">
+        <label>Stock Quantity</label>
+        <input type="number" class="form-control" asp-for="StockQuantity" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</form>

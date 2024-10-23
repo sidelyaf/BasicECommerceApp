@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BasicEcommerce.Domain.Entities.Product>
+
+<h2>Products</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.StockQuantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Product/Create" class="btn btn-primary">Add New Product</a>
+
