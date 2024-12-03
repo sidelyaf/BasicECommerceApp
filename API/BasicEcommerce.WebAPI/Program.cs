@@ -1,4 +1,4 @@
-﻿using BasicEcommerce.Application.Interfaces;
+﻿using BasicEcommerce.Domain.Interfaces;
 using BasicEcommerce.Infrastructure.Context;
 using BasicEcommerce.Infrastructure.Repositories;
 using BasicEcommerce.WebAPI.Extensions;

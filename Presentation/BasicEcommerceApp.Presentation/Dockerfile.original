@@ -13,9 +13,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Presentation/BasicEcommerceApp.Presentation/BasicEcommerceApp.Presentation.csproj", "Presentation/BasicEcommerceApp.Presentation/"]
-COPY ["Application/BasicEcommerce.Application/BasicEcommerce.Application.csproj", "Application/BasicEcommerce.Application/"]
-COPY ["Domain/BasicEcommerce.Domain/BasicEcommerce.Domain.csproj", "Domain/BasicEcommerce.Domain/"]
-COPY ["Infrastructure/BasicEcommerce.Infrastructure/BasicEcommerce.Infrastructure.csproj", "Infrastructure/BasicEcommerce.Infrastructure/"]
 RUN dotnet restore "./Presentation/BasicEcommerceApp.Presentation/BasicEcommerceApp.Presentation.csproj"
 COPY . .
 WORKDIR "/src/Presentation/BasicEcommerceApp.Presentation"

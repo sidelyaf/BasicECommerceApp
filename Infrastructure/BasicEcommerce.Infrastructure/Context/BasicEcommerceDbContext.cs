@@ -9,6 +9,4 @@ public class BasicEcommerceDbContext : DbContext
         
     }
     public BasicEcommerceDbContext(DbContextOptions<BasicEcommerceDbContext> options) : base(options) { }
-
-
 }

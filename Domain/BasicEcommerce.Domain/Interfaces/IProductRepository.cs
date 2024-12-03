@@ -1,4 +1,6 @@
-﻿namespace BasicEcommerce.Application.Interfaces;
+﻿using BasicEcommerce.Domain.Entities;
+
+namespace BasicEcommerce.Domain.Interfaces;
 public interface IProductRepository
 {
     Task<Product> GetProductByIdAsync(Guid id);

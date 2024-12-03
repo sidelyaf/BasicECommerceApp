@@ -4,7 +4,8 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "basicecommerce.webapi": "StartDebugging"
+        "basicecommerce.webapi": "StartDebugging",
+        "basicecommerceapp.presentation": "StartDebugging"
       }
     }
   }

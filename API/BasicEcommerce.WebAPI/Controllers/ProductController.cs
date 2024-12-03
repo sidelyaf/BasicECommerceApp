@@ -3,7 +3,9 @@
 [ApiController]
 [Route("api/products")]
 public class ProductController : ControllerBase
-{
+{  /// <summary>
+/// TODO:IProductService den almalıyım!!!
+/// </summary>
     private readonly ProductService _productService;
 
     public ProductController(ProductService productService)
