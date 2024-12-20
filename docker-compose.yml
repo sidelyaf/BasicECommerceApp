@@ -1,4 +1,6 @@
 services:
+  basicecommercedb:
+    image: mcr.microsoft.com/mssql/server
   basicecommerce.webapi:
     image: ${DOCKER_REGISTRY-}basicecommercewebapi
     build:

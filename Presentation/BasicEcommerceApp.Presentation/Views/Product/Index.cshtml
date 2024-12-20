@@ -1,26 +1,78 @@
 ﻿@model IEnumerable<BasicEcommerce.Domain.Entities.Product>
 
-<h2>Products</h2>
+<h2>Yemek Listesi</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Stock Quantity</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model)
-        {
-            <tr>
-                <td>@product.Name</td>
-                <td>@product.Price</td>
-                <td>@product.StockQuantity</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12">
+            <a href="/Product/Create" class="btn btn-primary">Yeni Ürün ekle</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-3">
 
-<a href="/Product/Create" class="btn btn-primary">Add New Product</a>
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-success text-white text-uppercase">Son Sipariş Ürünü</div>
+                <div class="card-body">
+                    <img asp-append-version="true" class="img-fluid" src="~/images/product/@Model.LastOrDefault().ImageUrl" />
+                    <h5 class="card-title">@Model.LastOrDefault().Name</h5>
+                    <p class="card-text">@Model.LastOrDefault().Description</p>
+                    <p class="bloc_left_price">@Model.LastOrDefault().Price TL</p>
+                </div>
+            </div>
 
+        </div>
+
+        <div class="col">
+            <div class="row">
+
+                @foreach (var product in Model)
+                {
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card">
+    <a asp-controller="Product" asp-action="ProductDetail" asp-route-productId="@product.Id"><img asp-append-version="true" class="card-img-top" src="~/images/product/@product.ImageUrl" alt=""></a>
+    <div class="card-body">
+            <h4 class="card-title"><a asp-controller="Product" asp-action="ProductDetail" asp-route-productId="@product.Id" class="color-main">@product.Name</a></h4>
+        <p class="card-text">@product.Description</p>
+        <div class="row">
+            <div class="col">
+                <p class="btn btn-danger btn-block">@product.Price TL</p>
+            </div>
+            <div class="col">
+
+                @* <a asp-page="/Cart" asp-route-productid="@product.Id" class="btn btn-success btn-block">Sepete Ekle</a> *@
+
+                <form asp-page-handler="addtocart" method="post" name="addtocartform" id="add_cart_form">
+                    <a href="javascript:;" onclick="parentnode.submit();" class="btn btn-success btn-block">Sepete Ekle</a>
+                    <input type="hidden" asp-for="@product.Id" name="productid" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+                    </div>
+                }
+
+                <div class="col-12">
+                    <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Önceki</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Sonraki</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

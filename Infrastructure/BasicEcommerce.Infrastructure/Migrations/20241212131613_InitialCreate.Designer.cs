@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasicEcommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(BasicEcommerceDbContext))]
-    [Migration("20241203064410_InitialCreate")]
+    [Migration("20241212131613_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -69,6 +69,14 @@ namespace BasicEcommerce.Infrastructure.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

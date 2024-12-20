@@ -5,8 +5,12 @@ using BasicEcommerce.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Read API Base URL from appsettings.json
+var configuration = builder.Configuration;
+
 // MS SQL Bağlantısı
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<BasicEcommerceDbContext>(options => options.UseSqlServer(connectionString));
 
 // Servis ve Repository Bağımlılıklarını Ekliyoruz
@@ -15,9 +19,12 @@ builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
+
+var apiBaseUrl = configuration["ApiSettings:BaseUrl"]; // appsettings.json'dan oku
+
 builder.Services.AddHttpClient("BasicEcommerceAPI", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5259/"); // API'nizin çalıştığı adres ve port
+    client.BaseAddress = new Uri(apiBaseUrl ?? string.Empty); // API'nizin çalıştığı adres ve port
 });
 
 // MVC'yi ekleyin
@@ -46,7 +53,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Product}/{action=Index}/{id?}");
+        pattern: "{controller=Home}/{action=Index}/{id?}");
 });
 
 app.UseAuthorization();

@@ -1,12 +1,23 @@
-services:
+﻿services:
+  basicecommercedb:
+    container_name: basicecommercedb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=bcA8PHkFZh963dsg
+    restart: always
+    ports:
+      - "1433:1433"
   basicecommerce.webapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=basicecommercedb;Database=BasicEcommerceDB;User Id=sa;Password=bcA8PHkFZh963dsg;Encrypt=False;TrustServerCertificate=True
+    depends_on:
+      - basicecommercedb
     ports:
-      - "8080"
-      - "8081"
+      - "6200:8080"
+      - "6250:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -15,9 +26,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - API_URL=http://basicecommerce.webapi:8080 # API bağlantı adresi
+    depends_on:
+      - basicecommerce.webapi
     ports:
-      - "8080"
-      - "8081"
+      - "6300:8080"
+      - "6350:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

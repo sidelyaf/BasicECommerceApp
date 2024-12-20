@@ -37,4 +37,16 @@ public class ProductController : Controller
         }
         return View(product);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> ProductDetail(Guid productId)
+    {
+        if (ModelState.IsValid)
+        {
+            Product response = await client.GetFromJsonAsync<Product>($"/api/products/getproduct/{productId}") ?? new Product();
+
+            return View(response);
+        }
+        return View();
+    }
 }

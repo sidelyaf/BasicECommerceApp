@@ -1,4 +1,4 @@
-﻿using BasicEcommerce.Domain.Interfaces;
+﻿
 using BasicEcommerce.Infrastructure.Context;
 using BasicEcommerce.Infrastructure.Repositories;
 using BasicEcommerce.WebAPI.Extensions;
@@ -11,8 +11,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<BasicEcommerceDbContext>(options => options.UseSqlServer(connectionString));
 
 // Register Services and Repositories
-builder.Services.AddScoped<ProductService>();
-builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService,OrderService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 

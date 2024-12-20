@@ -3,12 +3,10 @@
 [ApiController]
 [Route("api/products")]
 public class ProductController : ControllerBase
-{  /// <summary>
-/// TODO:IProductService den almalıyım!!!
-/// </summary>
-    private readonly ProductService _productService;
+{
+    private readonly IProductService _productService;
 
-    public ProductController(ProductService productService)
+    public ProductController(IProductService productService)
     {
         _productService = productService;
     }
@@ -24,6 +22,14 @@ public class ProductController : ControllerBase
     public async Task<IActionResult> GetAllProducts()
     {
         var products = await _productService.GetAllProductsAsync();
+        return Ok(products);
+    }
+
+    [HttpGet]
+    [Route("getproduct/{id}")]
+    public async Task<IActionResult> GetProduct(Guid Id)
+    {
+        var products = await _productService.GetProduct(Id);
         return Ok(products);
     }
 }
